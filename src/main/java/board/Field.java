@@ -1,5 +1,7 @@
 package board;
 
+import config.Configuration;
+
 public class Field {
 
     int position;
@@ -12,8 +14,12 @@ public class Field {
     }
 
     @Override
-    public String toString() {
-        return !sign.equals(Sign.EMPTY) ? sign + " " : (position+1) + " ";
+    public String toString() { // improve this method
+        String result = !sign.equals(Sign.EMPTY) ? sign + " " : (position+1) + " ";
+        if((position+1) % Configuration.BOARD_SIZE == 0) {
+            result += "\n";
+        }
+        return result;
     }
 
 }

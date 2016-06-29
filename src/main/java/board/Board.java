@@ -1,7 +1,6 @@
 package board;
 
 import java.util.List;
-import java.util.Set;
 
 public class Board {
 
@@ -24,7 +23,7 @@ public class Board {
     }
 
     @Override
-    public String toString() { // change to proper implementation
+    public String toString() {
         return fields.toString();
     }
 

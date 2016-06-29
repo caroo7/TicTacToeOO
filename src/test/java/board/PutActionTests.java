@@ -1,7 +1,5 @@
 package board;
 
-import action.PutField;
-import action.PutO;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -23,7 +21,7 @@ public class PutActionTests {
     }
 
     @Test(dataProvider = "fieldsDataProvider")
-    void addFieldsOnPositionTest(int position, boolean expectedResult) {
+    void testAddFieldsOnPosition(int position, boolean expectedResult) {
         // arrange
         PutField putO = new PutO(board);
 

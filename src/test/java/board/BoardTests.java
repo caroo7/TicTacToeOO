@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class BoardTests {
 
     @Test
-    void verifyBoardDimensionSize() {
+    void testBoardDimensionSize() {
         // arrange
         BoardDimension dimension = new BoardDimension(3);
 
@@ -18,7 +18,7 @@ public class BoardTests {
     }
 
     @Test
-    void preparingBoardTest() {
+    void testBoardPreparing() {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();

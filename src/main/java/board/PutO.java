@@ -1,8 +1,4 @@
-package action;
-
-import board.Board;
-import board.Field;
-import board.Sign;
+package board;
 
 public class PutO extends PutField {
 

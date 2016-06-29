@@ -1,4 +1,4 @@
-package action;
+package board;
 
 import board.Board;
 
