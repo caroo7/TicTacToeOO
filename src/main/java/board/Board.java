@@ -23,4 +23,9 @@ public class Board {
         return false;
     }
 
+    @Override
+    public String toString() { // change to proper implementation
+        return fields.toString();
+    }
+
 }
