@@ -1,5 +1,5 @@
 package board;
 
 public enum Sign {
-    EMPTY, O;
+    EMPTY, O, X;
 }

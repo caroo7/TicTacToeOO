@@ -15,7 +15,7 @@ public class Field {
 
     @Override
     public String toString() { // improve this method
-        String result = !sign.equals(Sign.EMPTY) ? sign + " " : (position+1) + " ";
+        String result = !sign.equals(Sign.EMPTY) ? sign.toString() : (position+1) + "";
         if((position+1) % Configuration.BOARD_SIZE == 0) {
             result += "\n";
         }
