@@ -1,6 +1,6 @@
 package board;
 
-public class Field{
+public class Field {
 
     int position;
 
@@ -9,6 +9,11 @@ public class Field{
     public Field(int position, Sign sign) {
         this.position = position;
         this.sign = sign;
+    }
+
+    @Override
+    public String toString() {
+        return !sign.equals(Sign.EMPTY) ? sign + " " : (position+1) + " ";
     }
 
 }
