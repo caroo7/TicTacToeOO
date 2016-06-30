@@ -3,7 +3,7 @@ package board;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class BoardTests {
+public class BoardTest {
 
     @Test
     void testBoardDimensionSize() {
