@@ -9,7 +9,7 @@ public class TakenPositionsWrapper {
 
     Map<Integer, Sign> takenPositions = new HashMap<>();
 
-    boolean tryToPutOnPosition(int position, Sign sign) throws IllegalArgumentException {
+    public boolean tryToPutOnPosition(int position, Sign sign) throws IllegalArgumentException {
         if(position < 0 || position > Configuration.BOARD_SIZE * Configuration.BOARD_SIZE) {
             throw new IllegalArgumentException("Position is out of range!");
         }

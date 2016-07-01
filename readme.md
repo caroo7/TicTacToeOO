@@ -10,7 +10,10 @@ Only via pull requests. Fork the repository, add your commits on a well-named br
 
 1. Place O in the middle of the board
 2. Place X and O, so O, X and O have been played in total
-3. Having O win (up-to-down diagonal) with two Xes on the board, announce the winner
+3. Winning conditions checking (vertical, horizontal and diagonal). Based on sequences in case of limiting steps in checking procedure.
+4. Two players who can take positions on the board. Player manager which is responsible for switching between player during the game.
+5. Retrieve position from standard input and validate it properly.
+6. Use components created previously to build game logic.
 
 ## Rules
 
