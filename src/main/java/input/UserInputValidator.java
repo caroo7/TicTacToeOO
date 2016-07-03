@@ -13,17 +13,17 @@ public class UserInputValidator {
     public int validate() throws InputValidationException {
         String retrievedString = retrievedData.data;
         if (retrievedString.contains(" ")) {
-            throw new InputValidationException("There is a space in provided data");
+            throw new InputValidationException("There is a space in provided data.");
         }
         int number;
         try {
             number = Integer.parseInt(retrievedString);
         } catch (NumberFormatException e) {
-            throw new InputValidationException("Provided data is not a number");
+            throw new InputValidationException("Provided data is not a number.");
         }
         int size = Configuration.BOARD_SIZE * Configuration.BOARD_SIZE;
         if (number < 1 || number > size) {
-            throw new InputValidationException("The number is lower than 1 or greater than " + size);
+            throw new InputValidationException("The number is lower than 1 or greater than " + size + ".");
         }
         return number;
     }

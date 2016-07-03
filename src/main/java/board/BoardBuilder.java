@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class BoardBuilder {
 
-    Board build() {
+    public Board build() {
         return new Board(new BoardDimension(Configuration.BOARD_SIZE), initializeFields());
     }
 

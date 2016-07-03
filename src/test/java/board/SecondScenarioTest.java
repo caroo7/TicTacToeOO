@@ -10,16 +10,17 @@ public class SecondScenarioTest {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
-        UpdateBoardAction updateBoard = new UpdateBoardAction(board);
+        DisplayBoardAction displayAction = new DisplayBoardAction(board);
+        UpdateBoardAction updateAction = new UpdateBoardAction(board);
 
         // act
-        updateBoard.updateBoard(0, Sign.O);
-        updateBoard.updateBoard(1, Sign.X);
-        updateBoard.updateBoard(4, Sign.O);
-        updateBoard.updateBoard(5, Sign.X);
-        updateBoard.updateBoard(7, Sign.O);
-        updateBoard.updateBoard(8, Sign.X);
-        String result = board.toString();
+        updateAction.updateBoard(0, Sign.O);
+        updateAction.updateBoard(1, Sign.X);
+        updateAction.updateBoard(4, Sign.O);
+        updateAction.updateBoard(5, Sign.X);
+        updateAction.updateBoard(7, Sign.O);
+        updateAction.updateBoard(8, Sign.X);
+        String result = displayAction.displayBoard();
 
         //assert
         Assert.assertEquals(result, createResultWithOAndX());

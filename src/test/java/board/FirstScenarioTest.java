@@ -10,11 +10,12 @@ public class FirstScenarioTest {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
-        UpdateBoardAction action = new UpdateBoardAction(board);
+        DisplayBoardAction displayAction = new DisplayBoardAction(board);
+        UpdateBoardAction updateAction = new UpdateBoardAction(board);
 
         // act
-        action.updateBoard(4, Sign.O);
-        String result = board.toString();
+        updateAction.updateBoard(4, Sign.O);
+        String result = displayAction.displayBoard();
 
         //assert
         Assert.assertEquals(result, createResultWithOAtTheMiddle());

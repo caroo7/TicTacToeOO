@@ -2,8 +2,7 @@ package logic;
 
 import arbiter.Arbiter;
 import arbiter.TakenPositionsWrapper;
-import board.Board;
-import board.UpdateBoardAction;
+import board.*;
 import input.InputValidationException;
 import input.RetrievedData;
 import input.UserInput;
@@ -13,57 +12,76 @@ import player.Player;
 
 public class Game3x3 implements Game {
 
-    private Board board;
-    private UpdateBoardAction updateBoard;
+    Board board;
+    DisplayBoardAction displayAction;
+    UpdateBoardAction updateAction;
+    BoardView view;
 
-    private Player playerO;
-    private Player playerX;
-    private Player actualPlayer;
+    Player playerO;
+    Player playerX;
+    Player actualPlayer;
+    ChangePlayersAction changePlayer;
 
-    private ChangePlayersAction changePlayer;
+    TakenPositionsWrapper takenPositions;
+    Arbiter arbiter;
 
-    private TakenPositionsWrapper takenPositionsWrapper;
-    private Arbiter arbiter;
+    GameDisplayHelper displayHelper;
 
     @Override
     public void play() {
-
+        gameMainLoop();
     }
 
     private void gameMainLoop() {
         while (true) {
+            displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
 
-            if (!playerInteraction(actualPlayer)) {
+            // player interactions
+            boolean interactionResult;
+            try {
+                interactionResult = playerInteraction(actualPlayer);
+            } catch (InputValidationException e) {
+                displayHelper.display(e.getMessage());
+                continue;
+            }
+            if (!interactionResult) {
+                displayHelper.display("Cannot occupy field, it's already taken.");
                 continue;
             }
 
-            // check win here (moze playera wsadzic do pakietu z arbitrem i wolac bezposrednio tam - unikniecie getterow!!!!)
+            // check win
             if(arbiter.checkWinCondition(actualPlayer.getSign(), actualPlayer.getPlayerLastMove())) {
-                // display board
+                displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
+                displayHelper.display("Player " + actualPlayer.getSign() + " won. End of the game.");
                 break;
             }
 
-            // change player here
+            // change player
             actualPlayer = changePlayer.selectNext();
 
+            // check draw
             if(actualPlayer == null) {
-                //draw
+                displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
+                displayHelper.display("We have a draw. End of the game.");
                 break;
             }
         }
     }
 
-    private boolean playerInteraction(Player player) {
-        int position;
-        try {
-            position = getDataFromInput();
-        } catch (InputValidationException e) {
-            return false;
+    //******************************************************************************************
+    private boolean playerInteraction(Player player) throws InputValidationException {
+        int position = getDataFromInput();
+        boolean putResult = player.tryToPutPlayerAtPositon(position-1, takenPositions);
+        if(putResult) {
+            putResult = updateBoardFields(position-1, player);
         }
-
-        // if below condition is true use UpdateBoardAction to update board state
-        return player.tryToPutPlayerAtPositon(position, takenPositionsWrapper);
+        return putResult;
     }
+
+    private boolean updateBoardFields(int position, Player player) {
+        return updateAction.updateBoard(position, player.getSign());
+    }
+    //******************************************************************************************
 
     private int getDataFromInput() throws InputValidationException {
         RetrievedData retrievedData = UserInput.retrieveInputData();

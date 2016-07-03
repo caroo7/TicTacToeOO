@@ -16,7 +16,7 @@ public class ChangeTwoPlayersAction implements ChangePlayersAction {
 
     @Override
     public Player selectNext() {
-        if(stepsCounter.getCounter() == Configuration.BOARD_SIZE * Configuration.BOARD_SIZE) {
+        if(stepsCounter.getCounter() == Configuration.BOARD_SIZE * Configuration.BOARD_SIZE - 1) {
             return null;
         }
         stepsCounter.incrementCounter();

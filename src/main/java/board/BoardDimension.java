@@ -4,7 +4,7 @@ public class BoardDimension {
 
     private int size;
 
-    BoardDimension(int size) {
+    public BoardDimension(int size) {
         this.size = size;
     }
 

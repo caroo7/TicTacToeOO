@@ -8,15 +8,11 @@ import java.util.stream.Collectors;
 public class Arbiter {
 
     TakenPositionsWrapper takenPositionsWrapper;
-
     Set<Sequence> availableWinSequences;
 
-    Sign winningSign;
-
-    Arbiter(Set<Sequence> availableWinSequences, Sign winningSign) {
+    public Arbiter(TakenPositionsWrapper takenPositionsWrapper, Set<Sequence> availableWinSequences) {
+        this.takenPositionsWrapper = takenPositionsWrapper;
         this.availableWinSequences = availableWinSequences;
-        this.winningSign = winningSign;
-        takenPositionsWrapper = new TakenPositionsWrapper();
     }
 
     public boolean checkWinCondition(Sign sign, int lastMove) {

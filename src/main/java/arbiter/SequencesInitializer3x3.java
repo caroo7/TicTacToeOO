@@ -3,7 +3,7 @@ package arbiter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SequenceInitializer3x3 implements SequencesInitializer {
+public class SequencesInitializer3x3 implements SequencesInitializer {
 
     @Override
     public Set<Sequence> createAllWinSequences() {

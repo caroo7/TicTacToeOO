@@ -14,7 +14,7 @@ public class ArbiterTest {
     void init() {
         // arrange
         ArbiterBuilder builder = new ArbiterBuilder();
-        arbiter = builder.build3x3();
+        arbiter = builder.build3x3(new TakenPositionsWrapper());
     }
 
     //*******************************************************************************************************************
@@ -22,7 +22,6 @@ public class ArbiterTest {
     @Test
     void testArbiterPreparing() {
         // assert
-        Assert.assertEquals(arbiter.winningSign, Sign.X);
         Assert.assertTrue(arbiter.availableWinSequences.size() > 0);
     }
 

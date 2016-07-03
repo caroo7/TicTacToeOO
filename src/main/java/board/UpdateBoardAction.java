@@ -8,7 +8,7 @@ public class UpdateBoardAction {
         this.board = board;
     }
 
-    boolean updateBoard(int position, Sign sign) {
+    public boolean updateBoard(int position, Sign sign) {
        return board.addToFields(new Field(position, sign));
     }
 
