@@ -19,7 +19,7 @@ public class Arbiter {
         takenPositionsWrapper = new TakenPositionsWrapper();
     }
 
-    boolean checkWinCondition(Sign sign, int lastMove) {
+    public boolean checkWinCondition(Sign sign, int lastMove) {
         Set<Sequence> matchingSequences = findMatchingSequences(lastMove);
         return checkMatchingSequences(matchingSequences, sign);
     }

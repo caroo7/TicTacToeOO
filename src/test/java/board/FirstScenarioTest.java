@@ -10,10 +10,10 @@ public class FirstScenarioTest {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
-        PutField putO = new PutO(board);
+        UpdateBoardAction action = new UpdateBoardAction(board);
 
         // act
-        putO.putFieldOnPosition(4);
+        action.updateBoard(4, Sign.O);
         String result = board.toString();
 
         //assert

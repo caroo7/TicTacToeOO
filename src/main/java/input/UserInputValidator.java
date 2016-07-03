@@ -10,7 +10,7 @@ public class UserInputValidator {
         this.retrievedData = data;
     }
 
-    int validate() throws InputValidationException {
+    public int validate() throws InputValidationException {
         String retrievedString = retrievedData.data;
         if (retrievedString.contains(" ")) {
             throw new InputValidationException("There is a space in provided data");

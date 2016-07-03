@@ -18,7 +18,7 @@ public class UserInputTest {
         UserInputValidator validator = new UserInputValidator(retrievedData);
 
         // act
-        int retrievedPosition = validator.validate();
+        validator.validate();
     }
 
     @Test
