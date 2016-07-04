@@ -22,4 +22,30 @@
         </dependency>
     </dependencies>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.bithill</groupId>
+                <artifactId>classycle-maven-plugin</artifactId>
+                <version>0.5</version>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <dependencyDefinition>
+                                show allResults
+                            </dependencyDefinition>
+                            <resultRenderer>classycle.dependency.DefaultResultRenderer</resultRenderer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
