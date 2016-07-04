@@ -13,7 +13,6 @@ import player.Player;
 public class Game3x3 implements Game {
 
     Board board;
-    DisplayBoardAction displayAction;
     UpdateBoardAction updateAction;
     BoardView view;
 
@@ -34,7 +33,7 @@ public class Game3x3 implements Game {
 
     private void gameMainLoop() {
         while (true) {
-            displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
+            displayHelper.display(view.prepareReadableOutput(board.toString()));
 
             // player interactions
             boolean interactionResult;
@@ -45,13 +44,13 @@ public class Game3x3 implements Game {
                 continue;
             }
             if (!interactionResult) {
-                displayHelper.display("Cannot occupy field, it's already taken.");
+                displayHelper.display("Cannot occupy field, it's already taken. Try again.");
                 continue;
             }
 
             // check win
             if(arbiter.checkWinCondition(actualPlayer.getSign(), actualPlayer.getPlayerLastMove())) {
-                displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
+                displayHelper.display(view.prepareReadableOutput(board.toString()));
                 displayHelper.display("Player " + actualPlayer.getSign() + " won. End of the game.");
                 break;
             }
@@ -61,7 +60,7 @@ public class Game3x3 implements Game {
 
             // check draw
             if(actualPlayer == null) {
-                displayHelper.display(view.prepareReadableOutput(displayAction.displayBoard()));
+                displayHelper.display(view.prepareReadableOutput(board.toString()));
                 displayHelper.display("We have a draw. End of the game.");
                 break;
             }

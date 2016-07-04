@@ -10,7 +10,6 @@ public class BoardTest {
     // arrange
     private BoardBuilder builder;
     private Board board;
-    private DisplayBoardAction displayAction;
     private UpdateBoardAction updateAction;
 
     @BeforeTest
@@ -18,7 +17,6 @@ public class BoardTest {
         // arrange
         builder = new BoardBuilder();
         board = builder.build();
-        displayAction = new DisplayBoardAction(board);
         updateAction = new UpdateBoardAction(board);
     }
 
@@ -46,7 +44,7 @@ public class BoardTest {
     @Test
     void testDisplayEmptyBoard() {
         // act
-        String result = displayAction.displayBoard();
+        String result = board.toString();
 
         // assert
         Assert.assertEquals(result, createExpectedEmptyView());
@@ -62,7 +60,7 @@ public class BoardTest {
         BoardView view = new BoardView();
 
         // act
-        String result = view.prepareReadableOutput(displayAction.displayBoard());
+        String result = view.prepareReadableOutput(board.toString());
 
         // assert
         Assert.assertEquals(result, createExpectedEmptyReadableView());

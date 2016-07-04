@@ -1,7 +1,5 @@
 package arbiter;
 
-import board.Sign;
-
 public class ArbiterBuilder {
 
     public Arbiter build3x3(TakenPositionsWrapper takenPositions) {

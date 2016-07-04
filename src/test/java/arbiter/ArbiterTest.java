@@ -5,12 +5,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import player.StepsCounter;
 
 public class ArbiterTest {
 
     private Arbiter arbiter;
 
-    @BeforeTest
+    @BeforeTest()
     void init() {
         // arrange
         ArbiterBuilder builder = new ArbiterBuilder();
@@ -22,7 +23,8 @@ public class ArbiterTest {
     @Test
     void testArbiterPreparing() {
         // assert
-        Assert.assertTrue(arbiter.availableWinSequences.size() > 0);
+        Assert.assertTrue(arbiter.playerOWinSequences.size() > 0);
+        Assert.assertTrue(arbiter.playerXWinSequences.size() > 0);
     }
 
     //*******************************************************************************************************************
@@ -35,6 +37,9 @@ public class ArbiterTest {
     @Test(dataProvider = "winningSequencesDataProvider")
     void testWinningSequenceCheck(Sign sign, int[] positions, int lastMove) {
         // arrange
+        SequencesInitializer3x3 initializer = new SequencesInitializer3x3();
+        arbiter.playerOWinSequences = initializer.createAllWinSequences();
+        arbiter.playerXWinSequences = initializer.createAllWinSequences();
         arbiter.takenPositionsWrapper.takenPositions.clear();
         prepareTakenPositions(sign, positions);
 
@@ -63,7 +68,6 @@ public class ArbiterTest {
         // assert
         Assert.assertEquals(result, false);
     }
-    //*******************************************************************************************************************
 
     @Test
     void testWrongSignWithCorrectSequence() {
@@ -78,11 +82,32 @@ public class ArbiterTest {
         Assert.assertEquals(result, false);
     }
 
-    //*******************************************************************************************************************
-
     private void prepareTakenPositions(Sign sign, int[] positions) {
         for (int position : positions) {
             arbiter.takenPositionsWrapper.tryToPutOnPosition(position, sign);
+        }
+    }
+    //*******************************************************************************************************************
+
+    @DataProvider
+    Object[][] conflictingPositionsDataProvider() {
+        return new Object[][]{{Sign.O, 0, 2, 5}, {Sign.O, 4, 5, 4}, {Sign.X, 0, 2, 5}, {Sign.X, 4, 5, 4}};
+    }
+
+    @Test(dataProvider = "conflictingPositionsDataProvider")
+    void testRemoveImpossibleSequences(Sign sign, int positionForO, int positionForX, int sizeAfterRemove) {
+        // arrange
+        prepareTakenPositions(Sign.O, new int[]{positionForO});
+        prepareTakenPositions(Sign.X, new int[]{positionForX});
+
+        // act
+        arbiter.checkWinCondition(sign, positionForX);
+
+        // assert
+        if(sign.equals(Sign.X)) {
+            Assert.assertEquals(arbiter.playerOWinSequences.size(), sizeAfterRemove);
+        } else {
+            Assert.assertEquals(arbiter.playerXWinSequences.size(), sizeAfterRemove);
         }
     }
 

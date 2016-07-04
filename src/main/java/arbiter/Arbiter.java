@@ -1,27 +1,41 @@
 package arbiter;
 
 import board.Sign;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Arbiter {
 
     TakenPositionsWrapper takenPositionsWrapper;
-    Set<Sequence> availableWinSequences;
+    Set<Sequence> playerOWinSequences;
+    Set<Sequence> playerXWinSequences;
 
     public Arbiter(TakenPositionsWrapper takenPositionsWrapper, Set<Sequence> availableWinSequences) {
         this.takenPositionsWrapper = takenPositionsWrapper;
-        this.availableWinSequences = availableWinSequences;
+        this.playerOWinSequences = availableWinSequences;
+        this.playerXWinSequences = availableWinSequences;
     }
 
     public boolean checkWinCondition(Sign sign, int lastMove) {
-        Set<Sequence> matchingSequences = findMatchingSequences(lastMove);
+        Set<Sequence> matchingSequences;
+        if(sign.equals(Sign.O)) {
+            playerXWinSequences = removeImpossibleSequences(playerXWinSequences, lastMove);
+            matchingSequences = findMatchingSequences(playerOWinSequences, lastMove);
+        } else {
+            playerOWinSequences = removeImpossibleSequences(playerOWinSequences, lastMove);
+            matchingSequences = findMatchingSequences(playerXWinSequences, lastMove);
+        }
         return checkMatchingSequences(matchingSequences, sign);
     }
 
-    private Set<Sequence> findMatchingSequences(int number) {
-        return availableWinSequences.stream()
+    private Set<Sequence> removeImpossibleSequences(Set<Sequence> availableSequences, int number) {
+        return availableSequences.stream()
+                .filter(e -> !e.containsNumber(number))
+                .collect(Collectors.toSet());
+    }
+
+    private Set<Sequence> findMatchingSequences(Set<Sequence> availableSequences, int number) {
+        return availableSequences.stream()
                 .filter(e -> e.containsNumber(number))
                 .collect(Collectors.toSet());
     }

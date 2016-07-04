@@ -8,10 +8,10 @@ public class ChangeTwoPlayersAction implements ChangePlayersAction {
     private Player playerTwo;
     private StepsCounter stepsCounter;
 
-    public ChangeTwoPlayersAction(Player playerOne, Player playerTwo) {
+    public ChangeTwoPlayersAction(Player playerOne, Player playerTwo, StepsCounter stepsCounter) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-        stepsCounter = new StepsCounter();
+        this.stepsCounter = stepsCounter;
     }
 
     @Override
@@ -22,4 +22,5 @@ public class ChangeTwoPlayersAction implements ChangePlayersAction {
         stepsCounter.incrementCounter();
         return stepsCounter.getCounter() % 2 == 0 ? playerOne : playerTwo;
     }
+
 }

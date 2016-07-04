@@ -10,7 +10,6 @@ public class SecondScenarioTest {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
-        DisplayBoardAction displayAction = new DisplayBoardAction(board);
         UpdateBoardAction updateAction = new UpdateBoardAction(board);
 
         // act
@@ -20,7 +19,7 @@ public class SecondScenarioTest {
         updateAction.updateBoard(5, Sign.X);
         updateAction.updateBoard(7, Sign.O);
         updateAction.updateBoard(8, Sign.X);
-        String result = displayAction.displayBoard();
+        String result = board.toString();
 
         //assert
         Assert.assertEquals(result, createResultWithOAndX());

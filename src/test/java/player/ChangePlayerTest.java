@@ -12,7 +12,7 @@ public class ChangePlayerTest {
     @BeforeGroups("testChangePlayerActionGroup")
     void init() {
         // arrange
-        action = new ChangeTwoPlayersAction(playerOne, playerTwo);
+        action = new ChangeTwoPlayersAction(playerOne, playerTwo, new StepsCounter());
     }
 
     @DataProvider
@@ -32,7 +32,7 @@ public class ChangePlayerTest {
     @Test
     void testMaximumSteps() {
         // arrange
-        action = new ChangeTwoPlayersAction(playerOne, playerTwo);
+        action = new ChangeTwoPlayersAction(playerOne, playerTwo, new StepsCounter());
         Player player = action.selectNext();
         for(int i=1; i<9; ++i) {
             player = action.selectNext();
