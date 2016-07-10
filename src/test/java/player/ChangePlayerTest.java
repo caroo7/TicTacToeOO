@@ -1,6 +1,7 @@
 package player;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.*;
 
 public class ChangePlayerTest {
@@ -26,7 +27,7 @@ public class ChangePlayerTest {
         Player player = action.selectNext();
 
         // assert
-        Assert.assertEquals(player.sign, playerToChange.sign);
+        assertEquals(player.sign, playerToChange.sign);
     }
 
     @Test
@@ -39,7 +40,7 @@ public class ChangePlayerTest {
         }
 
         // assert
-        Assert.assertNull(player);
+        assertNull(player);
     }
 
 }

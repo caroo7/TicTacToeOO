@@ -1,12 +1,13 @@
 package board;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.Test;
 
 public class SecondScenarioTest {
 
     @Test
-    void testPutOXSignsAtSeveralPlaces() {
+    void testPutOXSignsInSeveralPlaces() {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
@@ -22,10 +23,10 @@ public class SecondScenarioTest {
         String result = board.toString();
 
         //assert
-        Assert.assertEquals(result, createResultWithOAndX());
+        assertEquals(result, boardButForOAndXInSeveralPlaces());
     }
 
-    private String createResultWithOAndX() {
+    private String boardButForOAndXInSeveralPlaces() {
         return "[O, X, 3\n, 4, O, X\n, 7, O, X\n]";
     }
 

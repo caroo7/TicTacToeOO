@@ -1,7 +1,8 @@
 package player;
 
+import static org.testng.Assert.*;
+
 import arbiter.TakenPositionsWrapper;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class PlayerTest {
     @Test
     void testEmptyPlayer() {
         // assert
-        Assert.assertEquals(playerOne.playerLastMove, -1);
+        assertEquals(playerOne.playerLastMove, -1);
     }
 
     @DataProvider
@@ -37,8 +38,8 @@ public class PlayerTest {
         boolean result = actualPlayer.tryToPutPlayerAtPositon(position, takenPositionsWrapper);
 
         // assert
-        Assert.assertEquals(result, expectedResult);
-        Assert.assertEquals(actualPlayer.playerLastMove, playerLastMove);
+        assertEquals(result, expectedResult);
+        assertEquals(actualPlayer.playerLastMove, playerLastMove);
     }
 
 }

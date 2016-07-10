@@ -1,6 +1,7 @@
 package board;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -29,16 +30,16 @@ public class BoardTest {
         int size = dimension.getSize();
 
         // assert
-        Assert.assertEquals(size, 3);
+        assertEquals(size, 3);
     }
 
     @Test
     void testBoardPreparing() {
         // assert
-        Assert.assertNotNull(board);
-        Assert.assertNotNull(board.dimension);
-        Assert.assertNotNull(board.fields);
-        Assert.assertEquals(board.fields.size(), board.dimension.getSize() * board.dimension.getSize()); //not sure about this assertion
+        assertNotNull(board);
+        assertNotNull(board.dimension);
+        assertNotNull(board.fields);
+        assertEquals(board.fields.size(), board.dimension.getSize() * board.dimension.getSize()); //not sure about this assertion
     }
 
     @Test
@@ -47,7 +48,7 @@ public class BoardTest {
         String result = board.toString();
 
         // assert
-        Assert.assertEquals(result, createExpectedEmptyView());
+        assertEquals(result, createExpectedEmptyView());
     }
 
     private String createExpectedEmptyView() {
@@ -63,7 +64,7 @@ public class BoardTest {
         String result = view.prepareReadableOutput(board.toString());
 
         // assert
-        Assert.assertEquals(result, createExpectedEmptyReadableView());
+        assertEquals(result, createExpectedEmptyReadableView());
     }
 
     private String createExpectedEmptyReadableView() {
@@ -82,7 +83,7 @@ public class BoardTest {
         boolean result = updateAction.updateBoard(position, sign);
 
         // assert
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 
 }

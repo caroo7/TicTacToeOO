@@ -1,6 +1,7 @@
 package input;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class UserInputTest {
         int retrievedPosition = validator.validate();
 
         // assert
-        Assert.assertEquals(retrievedPosition, 5);
+        assertEquals(retrievedPosition, 5);
     }
 
 }

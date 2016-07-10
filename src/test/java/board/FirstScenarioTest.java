@@ -1,12 +1,13 @@
 package board;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.Test;
 
 public class FirstScenarioTest {
 
     @Test
-    void testAssignSignOAtTheCenter() {
+    void testsPlacingOInTheCenter() {
         // arrange
         BoardBuilder builder = new BoardBuilder();
         Board board = builder.build();
@@ -17,10 +18,10 @@ public class FirstScenarioTest {
         String result = board.toString();
 
         //assert
-        Assert.assertEquals(result, createResultWithOAtTheMiddle());
+        assertEquals(result, emptyBoardButForOInTheMiddle());
     }
 
-    private String createResultWithOAtTheMiddle() {
+    private String emptyBoardButForOInTheMiddle() {
         return "[1, 2, 3\n, 4, O, 6\n, 7, 8, 9\n]";
     }
 

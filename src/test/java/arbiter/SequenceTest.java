@@ -1,6 +1,7 @@
 package arbiter;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,7 @@ public class SequenceTest {
         int size = sequence.numberSequence.size();
 
         // assert
-        Assert.assertEquals(size, positions.length);
+        assertEquals(size, positions.length);
     }
 
     @Test
@@ -33,8 +34,8 @@ public class SequenceTest {
         boolean falseResult = sequence.containsNumber(3);
 
         //assert
-        Assert.assertTrue(trueResult);
-        Assert.assertFalse(falseResult);
+        assertTrue(trueResult);
+        assertFalse(falseResult);
     }
 
 }

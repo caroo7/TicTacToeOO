@@ -1,7 +1,8 @@
 package arbiter;
 
+import static org.testng.Assert.*;
+
 import board.Sign;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TakenPositionTest {
@@ -16,8 +17,8 @@ public class TakenPositionTest {
         boolean falseResult = positions.tryToPutOnPosition(0, Sign.X);
 
         //assert
-        Assert.assertTrue(trueResult);
-        Assert.assertFalse(falseResult);
+        assertTrue(trueResult);
+        assertFalse(falseResult);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

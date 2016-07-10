@@ -1,7 +1,8 @@
 package arbiter;
 
+import static org.testng.Assert.*;
+
 import board.Sign;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,8 +24,8 @@ public class ArbiterTest {
     @Test
     void testArbiterPreparing() {
         // assert
-        Assert.assertTrue(arbiter.playerOWinSequences.size() > 0);
-        Assert.assertTrue(arbiter.playerXWinSequences.size() > 0);
+        assertTrue(arbiter.playerOWinSequences.size() > 0);
+        assertTrue(arbiter.playerXWinSequences.size() > 0);
     }
 
     //*******************************************************************************************************************
@@ -47,7 +48,7 @@ public class ArbiterTest {
         boolean result = arbiter.checkWinCondition(Sign.X, lastMove);
 
         // assert
-        Assert.assertEquals(result, true);
+        assertEquals(result, true);
     }
 
     //*******************************************************************************************************************
@@ -66,7 +67,7 @@ public class ArbiterTest {
         boolean result = arbiter.checkWinCondition(Sign.X, lastMove);
 
         // assert
-        Assert.assertEquals(result, false);
+        assertEquals(result, false);
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ArbiterTest {
         boolean result = arbiter.checkWinCondition(Sign.X, 0);
 
         // assert
-        Assert.assertEquals(result, false);
+        assertEquals(result, false);
     }
 
     private void prepareTakenPositions(Sign sign, int[] positions) {
@@ -105,9 +106,9 @@ public class ArbiterTest {
 
         // assert
         if(sign.equals(Sign.X)) {
-            Assert.assertEquals(arbiter.playerOWinSequences.size(), sizeAfterRemove);
+            assertEquals(arbiter.playerOWinSequences.size(), sizeAfterRemove);
         } else {
-            Assert.assertEquals(arbiter.playerXWinSequences.size(), sizeAfterRemove);
+            assertEquals(arbiter.playerXWinSequences.size(), sizeAfterRemove);
         }
     }
 
