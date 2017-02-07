@@ -5,6 +5,8 @@ import static org.testng.Assert.*;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.LinkedList;
+
 public class SequenceTest {
 
     private int[] positions;
